@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const jobForm = document.getElementById('jobForm');
     const jobList = document.getElementById('jobList');
+    
 
     jobForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addJob(company, position, date, status, stages, notes) {
         const row = document.createElement('tr');
-        
+
 
         row.innerHTML = `
             <td>${company}</td>
@@ -32,19 +33,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         jobList.appendChild(row);
     }
-
-    // async function fetchCompanyInfo(company) {
-    //     try {
-    //         const response = await fetch(INSERT API URL HERE);
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-    //         const data = await response.json();
-    //         return data;
-    //     } catch (error) {
-    //         console.error('Fetch error:', error);
-    //         return null;
-    //     }
-    // }
 });
 
+const searchBtn = document.getElementById('searchBtn');
+searchBtn.addEventListener("click", (e) => {
+    if (searchBar.value !== "") {
+        fetchCompanyInfo()
+    }
+}
+)
+
+const searchBar = document.getElementById('search')
+searchBar.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && searchBar.value !== "") {
+        fetchCompanyInfo()
+    }
+}
+)
+
+
+async function fetchCompanyInfo() {
+    try {
+        const response = await fetch("https://jobicy.com/api/v2/remote-jobs");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return null;
+    }
+}

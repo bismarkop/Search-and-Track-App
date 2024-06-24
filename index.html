@@ -8,6 +8,16 @@
 </head>
 
 <body>
+    <div id="search">
+        <h1>Job Search</h1>
+        <label for="search">Search for jobs:</label>
+        <input type="search" id="search" placeholder="Enter job positions here" style="display: block;"></input>
+        <button id="searchBtn">Search</button>
+    </div>
+
+    <div id="searchResults"></div>
+
+    <hr>
     <h1>Job Tracker</h1>
     <form id="jobForm">
         <div class="form-group">
@@ -34,8 +44,9 @@
             <label for="notes">Notes:</label>
             <textarea id="notes" rows="5" cols="50" placeholder="Enter notes about this application process here. This should include any details that you might want to refer back to."></textarea>
         </div>
-        <button type="submit">Add Job</button>
+        <button id="addBtn" type="submit">Add Job</button>
     </form>
+    
     <h2>Job Applications</h2>
     <table style="text-align: center;">
         <thead>
