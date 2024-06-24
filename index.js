@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // async function fetchCompanyInfo(company) {
     //     try {
-    //         const response = await fetch(`https://api.mock.com/company?name=${company}`);
+    //         const response = await fetch(INSERT API URL HERE);
     //         if (!response.ok) {
     //             throw new Error('Network response was not ok');
     //         }
