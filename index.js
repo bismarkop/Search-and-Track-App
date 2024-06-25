@@ -80,12 +80,15 @@ async function receiveInput() {
 
 async function fetchCompanyInfo(info) {
     try {
-        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?&tag=${info}`);
+        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?count=1&tag=${info}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        // filter?? COME BACK TO THIS
         const jobs = data.jobs
+        // jobs = jobs.filter(data => data.areas.includes(info))
+
 
         
         for (let i = 0; i < jobs.length; i++) {
@@ -93,7 +96,7 @@ async function fetchCompanyInfo(info) {
             let jobDiv = document.createElement('div')
 
             jobDiv.value = jobPost.id
-            jobDiv.innerHTML = `${jobPost.companyName}: ${jobPost.jobDescription}`
+            jobDiv.innerHTML = `${jobPost.companyName}: ${jobPost.jobDescription} To apply, click the link - ${jobPost.url}` // Figure out how to make this a link
             searchResults.appendChild(jobDiv)
             console.log(jobPost.jobDescription)
         }
