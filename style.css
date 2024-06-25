@@ -16,3 +16,8 @@ th {
 .form-group {
     margin-bottom: 15px;
 }
+
+#search {
+    display: flex;
+    gap: 5px;
+}

@@ -1,3 +1,8 @@
+const searchBtn = document.getElementById('searchBtn');
+const searchBar = document.getElementById('search');
+const search = document.querySelector('.search')
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const jobForm = document.getElementById('jobForm');
     const jobList = document.getElementById('jobList');
@@ -33,28 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         jobList.appendChild(row);
     }
+
+    
 });
 
-const searchBtn = document.getElementById('searchBtn');
-searchBtn.addEventListener("click", (e) => {
-    if (searchBar.value !== "") {
-        fetchCompanyInfo()
-    }
-}
-)
 
-const searchBar = document.getElementById('search')
-searchBar.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && searchBar.value !== "") {
-        fetchCompanyInfo()
-    }
-}
-)
 
+let eventList = ['keydown', 'click']
+for (let event of eventList) {
+    search.addEventListener(event, (e) => {
+
+    })
+}
 
 async function fetchCompanyInfo() {
     try {
-        const response = await fetch("https://jobicy.com/api/v2/remote-jobs");
+        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?&tag=${e.value}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -65,4 +64,5 @@ async function fetchCompanyInfo() {
         console.error('Fetch error:', error);
         return null;
     }
+    
 }
