@@ -1,14 +1,12 @@
-const searchBtn = document.getElementById('searchBtn');
 const searchBar = document.getElementById('search');
-const search = document.querySelector('.search')
-
+const searchResults = document.getElementById('searchResults');
 
 document.addEventListener('DOMContentLoaded', () => {
     const jobForm = document.getElementById('jobForm');
     const jobList = document.getElementById('jobList');
     
 
-    jobForm.addEventListener('submit', async (e) => {
+    jobForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const company = document.getElementById('company').value;
@@ -39,21 +37,58 @@ document.addEventListener('DOMContentLoaded', () => {
         jobList.appendChild(row);
     }
 
+
     
 });
 
+const jobUrl = "https://jobicy.com/api/v2/remote-jobs"
 
+async function receiveInput() {
+    let jobListings = []
 
-let eventList = ['keydown', 'click']
-for (let event of eventList) {
-    search.addEventListener(event, (e) => {
-
+    fetch(jobUrl)
+    .then((response) => {
+        return response.json()
     })
-}
+    .then((data) => {
+        console.log(data)
+        data = data.filter(job => job.id !== null)
+        jobListings = data
 
-async function fetchCompanyInfo() {
+        for (let i = 0; i < jobListings.length; i++) {
+            const jobPost = jobListings[i];
+            let jobDiv = document.createElement('div')
+
+            jobDiv.value = jobPost.id
+            jobDiv.innerHTML = `${jobPost.companyName}`
+            searchResults.appendChild(jobDiv)
+            
+        }
+    })
+    .catch(function (error) {
+        console.log(error)
+    })
+
+    const searchInput = searchBar.value
+    searchResults.innerHTML = ""
+    console.log(searchInput)
+
+    if (searchInput === 0) return
+
+    const results = await fetchCompanyInfo(searchInput)
+    
+    // results.forEach(item => {
+    //     const div = document.createElement('div')
+    //     div.textContent = item.id
+    //     searchResults.appendChild(div)
+        
+    // })
+}
+receiveInput()
+
+async function fetchCompanyInfo(info) {
     try {
-        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?&tag=${e.value}`);
+        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?&tag=${info}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -66,3 +101,20 @@ async function fetchCompanyInfo() {
     }
     
 }
+
+
+
+
+searchBar.addEventListener("input", receiveInput)
+
+
+// searchBar.addEventListener("keydown", (e) => {
+//     e.preventDefault();
+
+//     if (e.key === "Enter" && searchBar.value !== "") {
+//         fetchCompanyInfo(e.value)
+//     }
+// }
+// )
+
+
