@@ -1,4 +1,4 @@
-const searchBar = document.getElementById('search');
+const searchBar = document.querySelector('input[type="search"]');
 const searchResults = document.getElementById('searchResults');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -51,9 +51,8 @@ async function receiveInput() {
         return response.json()
     })
     .then((data) => {
-        console.log(data)
-        data = data.filter(job => job.id !== null)
-        jobListings = data
+        jobListings = data.jobs
+        console.log(jobListings)
 
         for (let i = 0; i < jobListings.length; i++) {
             const jobPost = jobListings[i];
@@ -70,21 +69,14 @@ async function receiveInput() {
     })
 
     const searchInput = searchBar.value
-    searchResults.innerHTML = ""
+    // searchResults.innerHTML = ""
     console.log(searchInput)
 
     if (searchInput === 0) return
 
     const results = await fetchCompanyInfo(searchInput)
-    
-    // results.forEach(item => {
-    //     const div = document.createElement('div')
-    //     div.textContent = item.id
-    //     searchResults.appendChild(div)
-        
-    // })
 }
-receiveInput()
+// receiveInput()
 
 async function fetchCompanyInfo(info) {
     try {
@@ -93,8 +85,23 @@ async function fetchCompanyInfo(info) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data)
-        return data;
+        const jobs = data.jobs
+
+        
+        for (let i = 0; i < jobs.length; i++) {
+            const jobPost = jobs[i];
+            let jobDiv = document.createElement('div')
+
+            jobDiv.value = jobPost.id
+            jobDiv.innerHTML = `${jobPost.companyName}: ${jobPost.jobDescription}`
+            searchResults.appendChild(jobDiv)
+            console.log(jobPost.jobDescription)
+        }
+        console.log(jobs)
+        
+
+
+        return data.jobs;
     } catch (error) {
         console.error('Fetch error:', error);
         return null;
@@ -102,19 +109,8 @@ async function fetchCompanyInfo(info) {
     
 }
 
-
-
-
-searchBar.addEventListener("input", receiveInput)
-
-
-// searchBar.addEventListener("keydown", (e) => {
-//     e.preventDefault();
-
-//     if (e.key === "Enter" && searchBar.value !== "") {
-//         fetchCompanyInfo(e.value)
-//     }
-// }
-// )
-
+searchBar.addEventListener("search", () => {
+    console.log(searchBar.value)
+    fetchCompanyInfo(searchBar.value)
+})
 
