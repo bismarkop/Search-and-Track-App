@@ -27,3 +27,13 @@ th {
     max-height: 500px;
     overflow: auto;
 }
+
+footer {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+

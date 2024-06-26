@@ -94,9 +94,10 @@ async function fetchCompanyInfo(info) {
         for (let i = 0; i < jobs.length; i++) {
             const jobPost = jobs[i];
             let jobDiv = document.createElement('div')
+            // let jobPostUrl = document.
 
             jobDiv.value = jobPost.id
-            jobDiv.innerHTML = `${jobPost.companyName}: ${jobPost.jobDescription} To apply, click the link - ${jobPost.url}` // Figure out how to make this a link
+            jobDiv.innerHTML = `<br>${jobPost.companyName}: ${jobPost.jobDescription} To apply, click the link - <a href=${jobPost.url}>${jobPost.url}</a>` 
             searchResults.appendChild(jobDiv)
             console.log(jobPost.jobDescription)
         }
