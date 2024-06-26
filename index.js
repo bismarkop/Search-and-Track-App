@@ -53,7 +53,7 @@ async function fetchCompanyInfo(info) {
             let jobDiv = document.createElement('div')
             jobDiv.value = jobPost.id
 
-            jobDiv.innerHTML = `<br><h2>Search results: </h2> <h1 style="color: #024950"><u>${jobPost.companyName}:</u></h1> ${jobPost.jobDescription} To apply, click the link - <a href=${jobPost.url}>${jobPost.url}</a>` 
+            jobDiv.innerHTML = `<h1 style="color: #024950"><u>${jobPost.companyName}:</u></h1> ${jobPost.jobDescription} To apply, click the link - <a href=${jobPost.url}>${jobPost.url}</a>` 
             searchResults.appendChild(jobDiv)
         }
         return data.jobs;
