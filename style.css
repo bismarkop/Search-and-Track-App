@@ -21,3 +21,8 @@ th {
     display: flex;
     gap: 5px;
 }
+
+#searchResults {
+    height: 500px;
+    overflow: auto;
+}

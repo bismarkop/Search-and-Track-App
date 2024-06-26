@@ -80,7 +80,7 @@ async function receiveInput() {
 
 async function fetchCompanyInfo(info) {
     try {
-        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?count=1&tag=${info}`);
+        const response = await fetch(`https://jobicy.com/api/v2/remote-jobs?&tag=${info}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -101,9 +101,6 @@ async function fetchCompanyInfo(info) {
             console.log(jobPost.jobDescription)
         }
         console.log(jobs)
-        
-
-
         return data.jobs;
     } catch (error) {
         console.error('Fetch error:', error);
