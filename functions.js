@@ -11,7 +11,6 @@ export default async function fetchCompanyInfo(info) {
         const jobs = data.jobs
 
         for (let i = 0; i < jobs.length; i++) {
-            
             const jobPost = jobs[i];
             let jobDiv = document.createElement('div')
             jobDiv.value = jobPost.id
@@ -26,3 +25,4 @@ export default async function fetchCompanyInfo(info) {
         return null;
     }
 }
+

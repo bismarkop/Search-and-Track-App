@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 searchBar.addEventListener("search", () => {
-    if (searchBar.value === 0) return 
     fetchCompanyInfo(searchBar.value)
 })
 
