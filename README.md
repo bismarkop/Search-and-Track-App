@@ -1,6 +1,8 @@
 # Search & Track
 
-Search & Track is a remote job search web application that allows you to both search for jobs, and track the jobs that you apply to.
+Search & Track is a remote job search web application that allows you to both search for jobs, and track the jobs that you apply to. This assessment measured my current capability to implement advanced JavaScript tools and features in a practical manner.
+
+
 
 ## Features
 * Search field that allows you to search for remote positions
