@@ -1,6 +1,9 @@
 # Search & Track
 
-Search & Track is a remote job search web application that allows you to both search for jobs, and track the jobs that you apply to. This assessment measured my current capability to implement advanced JavaScript tools and features in a practical manner.
+Search & Track is a remote job search web application that allows you to search for jobs and track the jobs that you apply to. This web application exhibits advanced JavaScript capabilities such as:
+* Use of a public API
+* DOM manipulation
+* User-friendly interface
 
 
 
@@ -13,6 +16,3 @@ Search & Track is a remote job search web application that allows you to both se
 
 ## API used
 https://jobicy.com/jobs-rss-feed
-
-## Web Application
-https://bismarkop.github.io/SBA_308A/
